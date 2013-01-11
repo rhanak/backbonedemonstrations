@@ -13,6 +13,9 @@ define ['app/modules/angrycats/AngryCat'
             cat.set('rank', rank);
             ++rank;
           
+          this.on 'sort', =>
+            @trigger 'reset'
+
           this.on 'add', (cat) ->
             if not cat.get('rank') 
               error =  Error("Cat must have a rank defined before being added to the collection");
@@ -28,7 +31,7 @@ define ['app/modules/angrycats/AngryCat'
             @sort();
 
           MyApp.vent.on "rank:down", (cat) =>
-            if cat.get('rank') is self.size() 
+            if cat.get('rank') is @size() 
               # can't decrease rank of lowest ranked cat
               return true;
             
@@ -37,7 +40,7 @@ define ['app/modules/angrycats/AngryCat'
 
           MyApp.vent.on "cat:disqualify", (cat) =>
             disqualifiedRank = cat.get('rank');
-            catsToUprank = self.filter ->
+            catsToUprank = @filter ->
               return cat.get('rank') > disqualifiedRank; 
             
             catsToUprank.forEach (cat) -> 

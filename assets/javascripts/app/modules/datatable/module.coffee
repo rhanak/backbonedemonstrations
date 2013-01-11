@@ -13,7 +13,7 @@ define [
 
                 DataTable.addInitializer ->
                     App.RouteManager.registerRouter(new Router({ controller: DataTable }));
-                
+                 
 
                 DataTable.Views = {
                     layout: (options) -> 

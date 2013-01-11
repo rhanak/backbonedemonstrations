@@ -1,4 +1,4 @@
-define ['jquery', 'templates', 'backbone', 'backbone.marionette'], ($, templates, Backbone) ->
+define ['app/application', 'jquery', 'templates', 'backbone', 'backbone.marionette'], (MyApp, $, templates, Backbone) ->
   class AngryCatView extends Backbone.Marionette.ItemView
       template: templates['angry_cat_template'],
       tagName: 'tr',

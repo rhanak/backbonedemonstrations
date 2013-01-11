@@ -8,22 +8,23 @@ define(
      * Dependencies
      */
     [
-        'backbone',
-        'app',
+        'app/application',
         'Templates',
         'slick.grid'
+        'backbone', 
+        'backbone.marionette'
     ],
 
     /**
      * Module
      */
-        function (Backbone, App, Templates, Slick) {
+        function ( App, Templates, Slick, Backbone) {
 
         'use strict';
 
         var grid;
 
-        return Backbone.View.extend({
+        return Backbone.Marionette.View.extend({
 
             template: Templates.play,
 
@@ -32,7 +33,7 @@ define(
             },
 
             onShowCalled: function () {
-                
+                grid.init();
             },
 
             render: function () {
@@ -67,10 +68,6 @@ define(
                 var myGrid = $('<div id="myGrid" style="width:600px;height:500px;"></div>');
                 grid = new Slick.Grid(myGrid, data, columns, options);
                 this.$el.append(myGrid);
-                setTimeout(
-                    function () {
-                        grid.init();
-                    }, 800);
                 
                 return this;
             }
